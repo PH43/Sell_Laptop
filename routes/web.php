@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'FrontendController@getHome');
 
 Route::group(['namespace'=>'Admin'],function(){
     Route::group(['prefix'=>'login','middleware'=>'CheckLogedIn'],function(){
@@ -39,8 +37,8 @@ Route::group(['namespace'=>'Admin'],function(){
         Route::group(['prefix'=>'product'],function(){
             Route::get('/','ProductController@getProduct');
 
-            Route::get('/add','ProductController@getAddProduct');
-            Route::post('/add','ProductController@postAddProduct');
+            Route::get('/add','ProductController@getAddProduct')->name('addprod');
+            Route::post('/add','ProductController@postAddProduct')->name('addprod');
 
             Route::get('/edit/{id}','ProductController@getEditProduct');
             Route::post('/edit/{id}','ProductController@postEditProduct');
