@@ -36,13 +36,12 @@
 											<td>{{$product->prod_name}}</td>
 											<td>{{number_format($product->prod_price,0,',','.')}} VND</td>
 											<td>
-												<!--{{asset('storage/app/avartar/'.$product->prod_img)}}-->
-												<img height="150px" src="{{$product->prod_img}}" class="thumbnail">
+												<img height="150px" src="{{asset('upload/'.$product->prod_img)}}" class="thumbnail">
 											</td>
 											<td>{{$product->cate_name}}</td>
 											<td>
 												<a href="{{asset('admin/product/edit/'.$product->prod_id)}}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="{{asset('admin/product/delete/'.$product->prod_id)}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+												<a onclick="return confirm('Bạn có chắc chắn muốn xóa?')" href="{{asset('admin/product/delete/'.$product->prod_id)}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
 											</td>
 										</tr>
 									@endforeach

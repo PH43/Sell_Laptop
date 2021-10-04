@@ -16,7 +16,7 @@
 					<div class="panel-heading">Thêm sản phẩm</div>
 					<div class="panel-body">
 						@include('errors.note')
-						<form method="post" enctype="multipart/form-data">
+						<form action="{{route('addprod')}}" method="post" enctype="multipart/form-data">
 							<div class="row" style="margin-bottom:40px">
 								<div class="col-xs-8">
 									<div class="form-group" >
@@ -29,7 +29,7 @@
 									</div>
 									<div class="form-group" >
 										<label>Ảnh sản phẩm</label>
-										<input required id="img" type="file" name="img" class="form-control hidden" onchange="changeImg(this)">
+										<input required id="img" type="file" accept="../../upload" name="img" class="form-control hidden" onchange="changeImg(this)">
 					                    <img id="avatar" class="thumbnail" width="300px" src="img/new_seo-10-512.png">
 									</div>
 									<div class="form-group" >
@@ -57,7 +57,7 @@
 									</div>
 									<div class="form-group" >
 										<label>Miêu tả</label>
-										<textarea class="ckeditor" required name="description"></textarea>
+										<textarea required name="description" class="ckeditor"></textarea>
 										<script type="text/javascript">
 											var editor = CKEDITOR.replace('description',{
 												language:'vi',
@@ -65,7 +65,7 @@
 												filebrowserFlashBrowseUrl: '../../editor/ckfinder/ckfinder.html?Type=Flash',
 												filebrowserImageUploadUrl: '../../editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
 												filebrowserFlashUploadUrl: '../../editor/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-											});
+											});	
 										</script>
 									</div>
 									<div class="form-group" >
@@ -82,6 +82,7 @@
 										Không: <input type="radio" checked name="featured" value="0">
 									</div>
 									<input type="submit" name="submit" value="Thêm" class="btn btn-primary">
+									<!--<button type="submit" class="btn btn-primary">Thêm</button>-->
 									<a href="#" class="btn btn-danger">Hủy bỏ</a>
 								</div>
 							</div>

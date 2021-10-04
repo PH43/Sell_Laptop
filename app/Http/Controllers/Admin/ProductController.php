@@ -27,7 +27,7 @@ class ProductController extends Controller
         $product = new Product;
         $product->prod_name = $request->name;
         $product->prod_slug = str_slug($request->name);
-        $product->prod_img = $filename;
+        $product->prod_img = 'upload/'.$filename;
         $product->prod_accessories = $request->accessories;
         $product->prod_price = $request->price;
         $product->prod_warranty = $request->warranty;
@@ -38,16 +38,44 @@ class ProductController extends Controller
         $product->prod_cate = $request->cate;
         $product->prod_featured = $request->featured;
         $product->save();
-        $product->img->storeAs('avatar',$filename);
+        /*if($request->hasFile('img')){
+            $img = $request->img->getClientOriginalName();
+            $product['prod_img'] = $img;
+            $request->img->move('upload',$img);
+        }*/
+        //$request->file('prod_img')->move(public_path('/upload'),$filename);
+        $product->img->move('upload',$img);
+        //$product->img->storeAs('avatar',$filename);
+        return redirect('admin/product');
+    }
+    public function getEditProduct($id){
+        $data['product'] = Product::find($id);
+        $data['listcate'] = Category::all();
+        return view('backend.editproduct',$data);
+    }
+    public function postEditProduct(Request $request,$id){
+        $product = new Product;
+        $arr['prod_name'] = $request->name;
+        $arr['prod_slug'] = str_slug($request->name);
+        $arr['prod_accessories'] = $request->accessories;
+        $arr['prod_price'] = $request->price;
+        $arr['prod_warranty'] = $request->warranty;
+        $arr['prod_promotion'] = $request->promotion;
+        $arr['prod_condition'] = $request->condition;
+        $arr['prod_status'] = $request->status;
+        $arr['prod_description'] = $request->description;
+        $arr['prod_cate'] = $request->cate;
+        $arr['prod_featured'] = $request->featured;
+        if($request->hasFile('img')){
+            $img = $request->img->getClientOriginalName();
+            $arr['prod_img'] = $img;
+            $request->img->move('upload'.$img);
+        }
+        $product::where('prod_id',$id)->update($arr);
+        return redirect('admin/product');
+    }
+    public function getDeleteProduct($id){
+        Product::destroy($id);
         return back();
-    }
-    public function getEditProduct(){
-        return view('backend.editproduct');
-    }
-    public function postEditProduct(){
-
-    }
-    public function getDeleteProduct(){
-
     }
 }

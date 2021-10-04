@@ -1,5 +1,4 @@
 {
-    
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
@@ -57,8 +56,7 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true,
-        "platform-check": false
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true
