@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'FrontendController@getHome');
 
+Route::get('/detail/{id}/{slug}.html', 'FrontendController@getDetail');
+
+Route::get('/category/{id}/{slug}.html', 'FrontendController@getCategory');
+
 Route::group(['namespace'=>'Admin'],function(){
     Route::group(['prefix'=>'login','middleware'=>'CheckLogedIn'],function(){
         Route::get('/','LoginController@getLogin')->name('login');

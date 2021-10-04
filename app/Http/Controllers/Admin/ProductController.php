@@ -45,7 +45,7 @@ class ProductController extends Controller
         }*/
         //$request->file('prod_img')->move(public_path('/upload'),$filename);
         $product->img->move('upload',$img);
-        //storeAs('avatar',$filename);
+        //$product->img->storeAs('avatar',$filename);
         return redirect('admin/product');
     }
     public function getEditProduct($id){
