@@ -16,8 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'FrontendController@getHome');
 
 Route::get('/detail/{id}/{slug}.html', 'FrontendController@getDetail');
+Route::post('/detail/{id}/{slug}.html', 'FrontendController@postComment');
 
 Route::get('/category/{id}/{slug}.html', 'FrontendController@getCategory');
+
+Route::get('search', 'FrontendController@getSearch');
+
+Route::group(['prefix'=>'cart'],function(){
+    Route::get('add/{id}','CartController@getAddCart');
+    Route::get('show','CartController@getShowCart');
+});
 
 Route::group(['namespace'=>'Admin'],function(){
     Route::group(['prefix'=>'login','middleware'=>'CheckLogedIn'],function(){

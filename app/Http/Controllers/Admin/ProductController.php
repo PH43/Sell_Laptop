@@ -27,7 +27,7 @@ class ProductController extends Controller
         $product = new Product;
         $product->prod_name = $request->name;
         $product->prod_slug = str_slug($request->name);
-        $product->prod_img = 'upload/'.$filename;
+        $product->prod_img = '/'.$filename;
         $product->prod_accessories = $request->accessories;
         $product->prod_price = $request->price;
         $product->prod_warranty = $request->warranty;
@@ -38,13 +38,13 @@ class ProductController extends Controller
         $product->prod_cate = $request->cate;
         $product->prod_featured = $request->featured;
         $product->save();
-        /*if($request->hasFile('img')){
+        if($request->hasFile('img')){
             $img = $request->img->getClientOriginalName();
             $product['prod_img'] = $img;
             $request->img->move('upload',$img);
-        }*/
+        }
         //$request->file('prod_img')->move(public_path('/upload'),$filename);
-        $product->img->move('upload',$img);
+        //$product->img->move('upload',$img);
         //$product->img->storeAs('avatar',$filename);
         return redirect('admin/product');
     }
